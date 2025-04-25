@@ -4,6 +4,8 @@ Engineering materials
 This repository contains engineering materials of a self-driven vehicle's model participating in the WRO Future Engineers competition in the season 2022.
 
 ## Table of content
+## [Models](https://github.com/temiik/2025ChangeMakers/tree/main/models)
+## [Schemes](https://github.com/temiik/2025ChangeMakers/tree/main/schemes)
 ## [Hardware](https://github.com/temiik/2025ChangeMakers/tree/main/other/All%20components)
 ## [Software](https://github.com/temiik/2025ChangeMakers/tree/main/src)
 ## [Team photos](https://github.com/temiik/2025ChangeMakers/tree/main/t-photos)
