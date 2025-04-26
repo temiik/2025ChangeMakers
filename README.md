@@ -5,21 +5,21 @@
 Components
 - Raspberry Pi 4B 8GB: The core of the system, providing computational power and managing the overall control of the robot.
 
-Raspberry Pi Camera Module V2: Used for visual processing and object recognition.
+- Raspberry Pi Camera Module V2: Used for visual processing and object recognition.
 
-L298N Motor Driver: Responsible for controlling the motors, allowing for bidirectional movement.
+- L298N Motor Driver: Responsible for controlling the motors, allowing for bidirectional movement.
 
-Motor 12B: Drives the wheels of the robot, enabling motion.
+- Motor 12B: Drives the wheels of the robot, enabling motion.
 
-Servo MG996R: Used for controlling specific movements, such as turning or adjusting angles.
+- Servo MG996R: Used for controlling specific movements, such as turning or adjusting angles.
 
-Arduino Uno: Acts as a secondary controller to interface with certain components and manage additional sensors.
+- Arduino Uno: Acts as a secondary controller to interface with certain components and manage additional sensors.
 
-Laser Ranger Tracker GY-530 VL53LDK: A distance sensor used for precise obstacle detection and navigation.
+- Laser Ranger Tracker GY-530 VL53LDK: A distance sensor used for precise obstacle detection and navigation.
 
-LiPo Battery 5000mAh 3S 100C: Powers the entire system, providing the necessary energy for operation.
+- LiPo Battery 5000mAh 3S 100C: Powers the entire system, providing the necessary energy for operation.
 
-Power Reduction Regulator DC-DC YH11060D 200W 12A: Ensures stable and efficient power distribution to all components.
+- Power Reduction Regulator DC-DC YH11060D 200W 12A: Ensures stable and efficient power distribution to all components.
 
 This project aims to combine hardware and software for a fully autonomous robotic system capable of navigating its environment, detecting obstacles, and performing various tasks with high efficiency. The vehicle is designed to be scalable and adaptable to various challenges, ensuring robust performance in diverse environments.
 
