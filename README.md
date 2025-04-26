@@ -107,7 +107,7 @@ while True:
         arduino.write(b'2\n')
     else:
         arduino.write(b'0\n')
-
+###
 ## Table of content
 ## [Models](https://github.com/temiik/2025ChangeMakers/tree/main/models)
 ## [Schemes](https://github.com/temiik/2025ChangeMakers/tree/main/schemes)
