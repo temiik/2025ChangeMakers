@@ -29,6 +29,7 @@ This repository contains the full documentation, source code, and setup instruct
 <h1> Our team </h1>
 <img src="https://github.com/temiik/2025ChangeMakers/blob/main/t-photos/funny.jpeg?raw=true">
 ## Table of content
+
 ## [Models](https://github.com/temiik/2025ChangeMakers/tree/main/models)
 ## [Schemes](https://github.com/temiik/2025ChangeMakers/tree/main/schemes)
 ## [Hardware](https://github.com/temiik/2025ChangeMakers/tree/main/other/All%20components)
