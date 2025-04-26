@@ -109,6 +109,75 @@ while True:
         arduino.write(b'0\n')
 ```
 
+
+<img src="https://github.com/temiik/2025ChangeMakers/blob/main/schemes/Schematic_New-Project1_2025-04-26-2.pdf">
+📌 Key Components:
+- Raspberry Pi 4 — main controller.
+
+- L298N Motor Driver — module for controlling motors and actuators.
+
+- Ultrasonic Sensor (HC-SR04) — for obstacle distance detection.
+
+- VL53L0X — ToF distance sensor (I2C connection).
+
+- MicroSD Module — for firmware and data storage.
+
+- USB and RJ45 Ports — for external peripherals.
+
+- CSI Camera Module — for video stream.
+
+- 3.5mm Audio Jack — for audio output.
+
+- 1 Servo Motor — connected to Raspberry Pi GPIO for angle control.
+
+- 1 DC Motor (12V) — connected to L298N for driving.
+
+📊 Connections:
+- 📦 L298N Motor Driver:
+- OUT1 / OUT2 — connected to 12V DC Motor.
+
+- OUT3 / OUT4 — optional for second motor.
+
+- IN1 / IN2 — control lines from Raspberry Pi to control the DC motor direction.
+
+- ENA (Enable A) — connected to PWM-capable GPIO pin on Raspberry Pi for speed control.
+
+- VS — motor power supply (12V).
+
+- GND / VSS — common ground and logic voltage (3.3V / 5V).
+
+- Servo Motor — powered from 5V and controlled directly by a Raspberry Pi GPIO pin using PWM.
+
+📦 Ultrasonic Sensor:
+- VCC — 5V.
+
+- TRIG — GPIO control pin.
+
+- ECHO — GPIO read pin.
+
+- GND — ground.
+
+📦 ToF Distance Sensor (VL53L0X):
+- SDA / SCL — connected to Raspberry Pi I2C pins.
+
+- VCC — 3.3V or 5V.
+
+- GND — ground.
+
+📦 CSI Camera:
+- Connected via FPC connector to Raspberry Pi’s CSI port.
+
+📦 USB, RJ45, Micro HDMI:
+- External device connectivity, power, and video output.
+
+📦 Servo Motor:
+- Control pin — connected to a Raspberry Pi GPIO with PWM.
+
+- Power — from 5V.
+
+- GND — common ground.
+
+
 ## Table of content
 ## [Models](https://github.com/temiik/2025ChangeMakers/tree/main/models)
 ## [Schemes](https://github.com/temiik/2025ChangeMakers/tree/main/schemes)
