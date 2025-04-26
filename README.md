@@ -26,7 +26,8 @@ This project aims to combine hardware and software for a fully autonomous roboti
 This repository contains the full documentation, source code, and setup instructions for building and operating the robotic vehicle. We hope this project demonstrates the potential of integrating cutting-edge technology to create intelligent systems capable of solving real-world problems
 
 
-
+<h1> Our team </h1>
+<img src="https://github.com/temiik/2025ChangeMakers/blob/main/t-photos/funny.jpeg?raw=true">
 ## Table of content
 ## [Models](https://github.com/temiik/2025ChangeMakers/tree/main/models)
 ## [Schemes](https://github.com/temiik/2025ChangeMakers/tree/main/schemes)
