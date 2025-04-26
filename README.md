@@ -3,7 +3,7 @@
 ### Welcome to the documentation of our project for the VRO 2025 Regional Stage in the Future Engineering category. Our team has developed an autonomous robotic vehicle, which integrates various hardware components to perform a range of tasks. This vehicle is built using the Raspberry Pi 4B and other high-performance electronic components to ensure precise movement, sensing, and power efficiency.
 
 Components
-Raspberry Pi 4B 8GB: The core of the system, providing computational power and managing the overall control of the robot.
+- Raspberry Pi 4B 8GB: The core of the system, providing computational power and managing the overall control of the robot.
 
 Raspberry Pi Camera Module V2: Used for visual processing and object recognition.
 
