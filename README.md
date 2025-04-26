@@ -28,6 +28,85 @@ This repository contains the full documentation, source code, and setup instruct
 
 <h1> Our team </h1>
 <img src="https://github.com/temiik/2025ChangeMakers/blob/main/t-photos/funny.jpeg?raw=true">
+Yesken Kairat 16 kairatyesken@gmail.com
+Tolendi Temirlan 16
+Yusuf Mukhambetkaliev 16
+
+<h1> Engineering solution </h1>
+
+<img src="https://github.com/temiik/2025ChangeMakers/blob/main/v-photos/front.jpeg?raw=true">
+
+🔌 Power Supply System
+Our system uses a well-thought-out power distribution setup to ensure stable operation of all components during both autonomous and testing phases:
+
+The Raspberry Pi 4B (8GB) is powered via a power bank connected through the USB-C port. This provides a stable 5V supply with sufficient current for the Pi and the camera module.
+
+The Arduino Uno, VL53L0X laser distance sensors, MG996R servo motor, and L298N motor driver are powered by a 3S 5000mAh 100C LiPo battery. This delivers a nominal voltage of 11.1V, suitable for running motors and power-hungry components.
+
+To safely and efficiently regulate voltage, we use a DC-DC buck converter (YH11060D, 200W, 12A) to step down the 11.1V from the LiPo battery to 5V or 9V, depending on the requirements of each component (e.g., Arduino or servo motors).
+
+The L298N motor driver receives direct power from the LiPo battery through its VIN and GND pins, while its logic level (5V) can be supplied from the onboard regulator or from the DC-DC converter output.
+
+This power configuration allows for efficient load distribution and ensures reliable performance of all hardware in real-world field conditions.
+
+<img src="blob:https://web.whatsapp.com/bb2e8a98-d533-4a8a-b707-593eac917fbc">
+
+We made big progress since first version of our vehicle, because first one was using differential system of moving, that is prohibited.
+Also we use raspberry pi 4B instead of esp32 cam, that gives more power for object detection.
+
+## 🧠 Object Recognition Using Raspberry Pi
+
+To recognize red and green columns, we implemented a computer vision system using the **Raspberry Pi 4B** and the **Raspberry Pi Camera Module v2**. The Raspberry Pi captures real-time video frames and processes them using Python and OpenCV.
+
+The recognition logic is based on color detection in the **HSV** (Hue, Saturation, Value) color space. This approach allows for more reliable detection under varying lighting conditions.
+
+### Detection Process:
+1. Capture a frame from the camera.
+2. Convert the image to HSV color space.
+3. Apply color filters to detect **green** and **red** objects.
+4. Use contours to identify the shape and size of the columns.
+5. Send a specific code (`1` for green, `2` for red, `0` if none) to the Arduino Uno via serial communication.
+
+### Python Code Example:
+```python
+import cv2
+import serial
+import time
+
+# Setup serial connection to Arduino
+arduino = serial.Serial('/dev/ttyUSB0', 9600)
+time.sleep(2)
+
+cap = cv2.VideoCapture(0)
+
+while True:
+    ret, frame = cap.read()
+    if not ret:
+        continue
+
+    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+
+    # Define color ranges
+    green_lower = (40, 70, 70)
+    green_upper = (80, 255, 255)
+    red_lower1 = (0, 70, 50)
+    red_upper1 = (10, 255, 255)
+    red_lower2 = (170, 70, 50)
+    red_upper2 = (180, 255, 255)
+
+    # Create masks
+    green_mask = cv2.inRange(hsv, green_lower, green_upper)
+    red_mask1 = cv2.inRange(hsv, red_lower1, red_upper1)
+    red_mask2 = cv2.inRange(hsv, red_lower2, red_upper2)
+    red_mask = red_mask1 | red_mask2
+
+    # Detect objects and send signal to Arduino
+    if cv2.countNonZero(green_mask) > 500:
+        arduino.write(b'1\n')
+    elif cv2.countNonZero(red_mask) > 500:
+        arduino.write(b'2\n')
+    else:
+        arduino.write(b'0\n')
 
 ## Table of content
 ## [Models](https://github.com/temiik/2025ChangeMakers/tree/main/models)
