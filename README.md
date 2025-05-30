@@ -2,6 +2,16 @@
 ## Introduction
 ### Welcome to the documentation of our project for the VRO 2025 Regional Stage in the Future Engineering category. Our team has developed an autonomous robotic vehicle, which integrates various hardware components to perform a range of tasks. This vehicle is built using the Raspberry Pi 4B and other high-performance electronic components to ensure precise movement, sensing, and power efficiency.
 
+
+## Table of content
+## [Models](https://github.com/temiik/2025ChangeMakers/tree/main/models)
+## [Schemes](https://github.com/temiik/2025ChangeMakers/tree/main/schemes)
+## [Hardware](https://github.com/temiik/2025ChangeMakers/tree/main/other/All%20components)
+## [Software](https://github.com/temiik/2025ChangeMakers/tree/main/src)
+## [Team photos](https://github.com/temiik/2025ChangeMakers/tree/main/t-photos)
+## [Videos](https://github.com/temiik/2025ChangeMakers/tree/main/video)
+## [Vehicle Photos](https://github.com/temiik/2025ChangeMakers/tree/main/v-photos)
+
 Components
 - Raspberry Pi 4B 8GB: The core of the system, providing computational power and managing the overall control of the robot.
 
@@ -176,17 +186,6 @@ while True:
 - Power — from 5V.
 
 - GND — common ground.
-
-
-## Table of content
-## [Models](https://github.com/temiik/2025ChangeMakers/tree/main/models)
-## [Schemes](https://github.com/temiik/2025ChangeMakers/tree/main/schemes)
-## [Hardware](https://github.com/temiik/2025ChangeMakers/tree/main/other/All%20components)
-## [Software](https://github.com/temiik/2025ChangeMakers/tree/main/src)
-## [Team photos](https://github.com/temiik/2025ChangeMakers/tree/main/t-photos)
-## [Videos](https://github.com/temiik/2025ChangeMakers/tree/main/video)
-## [Vehicle Photos](https://github.com/temiik/2025ChangeMakers/tree/main/v-photos)
-
 
 
 
