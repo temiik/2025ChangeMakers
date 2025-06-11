@@ -1,6 +1,6 @@
 # Future Engineering — Regional Stage WRO 2025
 ## Introduction
-### Welcome to the documentation of our project for the VRO 2025 Regional Stage in the Future Engineering category. Our team has developed an autonomous robotic vehicle, which integrates various hardware components to perform a range of tasks. This vehicle is built using the Raspberry Pi 4B and other high-performance electronic components to ensure precise movement, sensing, and power efficiency.
+### Welcome to the documentation of our project for the WRO 2025 Regional Stage in the Future Engineering category. Our team has developed an autonomous robotic vehicle, which integrates various hardware components to perform a range of tasks. This vehicle is built using the Raspberry Pi 4B and other high-performance electronic components to ensure precise movement, sensing, and power efficiency.
 
 
 ## Table of content
