@@ -1,4 +1,4 @@
 Vehicle's photos
 ====
 
-This directory must 6 photos of the vehicle and additional photos.
+This directory have 6 photos of the vehicle and additional photos.
