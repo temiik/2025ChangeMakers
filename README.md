@@ -131,10 +131,12 @@ Our robot is designed to autonomously navigate a WRO FE field, detect colored pi
 
 ## Team & Contact
 
-- [Your Name(s)], [Contact Info]
-- [Add team photo or logo if desired]
+<h1> Our team </h1>
+<img src="https://github.com/temiik/2025ChangeMakers/blob/main/t-photos/funny.jpeg?raw=true">
+Yesken Kairat 16 kairatyesken@gmail.com
+Tolendi Temirlan 16
+Yusuf Mukhambetkaliev 16
 
----
 
 **Acknowledgements:**  
 Thanks to the WRO community and open-source contributors for inspiration and code samples.
