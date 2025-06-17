@@ -1,205 +1,296 @@
-# Future Engineering — Regional Stage WRO 2025
+# 🛠️ Team Changemakers — WRO Future Engineers 2024-25 Documentation
+
+> This repository documents our journey in building an autonomous vehicle for the WRO Future Engineers 2024-25 challenge, using a hybrid approach with LEGO EV3 and Raspberry Pi for robust, real-time vision and control.
+
+
+
+---
+
+## Table of Contents
+- [Introduction](#introduction)
+- [System Architecture](#system-architecture)
+- [Hardware Overview](#hardware-overview)
+  - [Chassis & Steering](#chassis--steering)
+  - [Sensors](#sensors)
+  - [Computing Units](#computing-units)
+- [Software Overview](#software-overview)
+  - [EV3dev & Raspberry Pi Setup](#ev3dev--raspberry-pi-setup)
+  - [Communication (SSH)](#communication-ssh)
+  - [Vision & Detection (OpenCV)](#vision--detection-opencv)
+  - [Control Logic](#control-logic)
+- [Algorithmic Details](#algorithmic-details)
+  - [ROI (Region of Interest) Explanation](#roi-region-of-interest-explanation)
+  - [Ultrasonic Centering](#ultrasonic-centering)
+  - [Wall Avoidance with Camera](#wall-avoidance-with-camera)
+- [Why We Switched: Arduino, EV3, and Pi](#why-we-switched-arduino-ev3-and-pi)
+- [Potential Improvements](#potential-improvements)
+- [Team & Contact](#team--contact)
+
+---
+
 ## Introduction
-### Welcome to the documentation of our project for the WRO 2025 Regional Stage in the Future Engineering category. Our team has developed an autonomous robotic vehicle, which integrates various hardware components to perform a range of tasks. This vehicle is built using the Raspberry Pi 4B and other high-performance electronic components to ensure precise movement, sensing, and power efficiency.
 
+Our robot is designed to autonomously navigate a WRO FE field, detect colored pillars and lines, avoid walls, and park precisely. We leverage the strengths of both the LEGO EV3 (for reliable motor and sensor control) and the Raspberry Pi (for advanced computer vision), combining them via a simple and robust SSH-based communication protocol.
 
-## Table of content
-## [Models](https://github.com/temiik/2025ChangeMakers/tree/main/models)
-## [Schemes](https://github.com/temiik/2025ChangeMakers/tree/main/schemes)
-## [Hardware](https://github.com/temiik/2025ChangeMakers/tree/main/other/All%20components)
-## [Software](https://github.com/temiik/2025ChangeMakers/tree/main/src)
-## [Team photos](https://github.com/temiik/2025ChangeMakers/tree/main/t-photos)
-## [Videos](https://github.com/temiik/2025ChangeMakers/tree/main/video)
-## [Vehicle Photos](https://github.com/temiik/2025ChangeMakers/tree/main/v-photos)
+---
 
-Components
-- Raspberry Pi 4B 8GB: The core of the system, providing computational power and managing the overall control of the robot.
+## System Architecture
 
-- Raspberry Pi Camera Module V2: Used for visual processing and object recognition.
+- **Front-wheel Ackerman steering** for realistic car-like movement.
+- **Rear-wheel drive** for propulsion.
+- **Raspberry Pi** handles all camera-based object and wall detection using OpenCV.
+- **EV3 Brick** (running ev3dev) manages motors, ultrasonic sensors, and executes movement commands.
+- **SSH socket communication** links the Pi and EV3, ensuring low-latency, reliable command transfer.
 
-- L298N Motor Driver: Responsible for controlling the motors, allowing for bidirectional movement.
+---
 
-- Motor 12B: Drives the wheels of the robot, enabling motion.
+## Hardware Overview
 
-- Servo MG996R: Used for controlling specific movements, such as turning or adjusting angles.
+### Chassis & Steering
 
-- Arduino Uno: Acts as a secondary controller to interface with certain components and manage additional sensors.
+- **Chassis:** Custom made by lego, adapted for WRO FE size constraints.
+- **Steering:** Front-wheel Ackerman steering, providing realistic turning dynamics and improved maneuverability compared to differential drive.
+- **Drive:** Rear-wheel drive, controlled via EV3 motors.
 
-- Laser Ranger Tracker GY-530 VL53LDK: A distance sensor used for precise obstacle detection and navigation.
+### ⚡ Power Management
 
-- LiPo Battery 5000mAh 3S 100C: Powers the entire system, providing the necessary energy for operation.
+- **EV3 Power:** Powered by standard LEGO EV3 battery (2200mAh Li-ion)
+  - Powers both EV3 motors (drive and steering)
+  - Powers ultrasonic sensors and color sensor
+  - Provides stable voltage for reliable sensor readings
+- **Raspberry Pi Power:** USB power bank (10000mAh)
+  - Dedicated power source for stable computer vision
+  - Powers the CSI camera module
+  - Ensures clean signal processing
 
-- Power Reduction Regulator DC-DC YH11060D 200W 12A: Ensures stable and efficient power distribution to all components.
+### 🔌 Connection Scheme
 
-This project aims to combine hardware and software for a fully autonomous robotic system capable of navigating its environment, detecting obstacles, and performing various tasks with high efficiency. The vehicle is designed to be scalable and adaptable to various challenges, ensuring robust performance in diverse environments.
+#### EV3 Configuration
 
-This repository contains the full documentation, source code, and setup instructions for building and operating the robotic vehicle. We hope this project demonstrates the potential of integrating cutting-edge technology to create intelligent systems capable of solving real-world problems
+| Port Type | Port Number | Component | Purpose |
+|-----------|-------------|-----------|----------|
+| Input | 1 | Ultrasonic Sensor (Left) | Wall distance detection |
+| Input | 2 | Ultrasonic Sensor (Right) | Wall distance detection |
+| Input | 3 | Color Sensor | Turn detection |
+| Input | 4 | Touch Sensor | Program start button |
+| Output | A | Drive Motor | Main propulsion |
+| Output | B | Steering Motor | Direction control |
 
+#### Raspberry Pi Configuration
 
-<h1> Our team </h1>
-<img src="https://github.com/temiik/2025ChangeMakers/blob/main/t-photos/funny.jpeg?raw=true">
-Yesken Kairat 16 kairatyesken@gmail.com
-Tolendi Temirlan 16
-Yusuf Mukhambetkaliev 16
+| Port | Connected To | Purpose |
+|------|-------------|----------|
+| CSI Port | Camera Module | Vision input |
+| USB-A | EV3 Brick | SSH communication |
+| USB-C | Power Bank | Power input (5V) |
+| GPIO | Fan | Cooling (optional) |
 
-<h1> Engineering solution </h1>
+#### Power Distribution
 
-<img src="https://github.com/temiik/2025ChangeMakers/blob/main/v-photos/front.jpeg?raw=true">
+| Component | Power Source | Voltage | Current Draw |
+|-----------|--------------|---------|--------------|
+| EV3 Brick | EV3 Battery | 7.2V | 2200mAh |
+| Motors | EV3 Battery | 7.2V | ~500mA each |
+| Sensors | EV3 Battery | 5V | ~50mA each |
+| Raspberry Pi | Power Bank | 5V | ~2.5A max |
+| Camera | Raspberry Pi | 3.3V | ~250mA |
 
-🔌 Power Supply System
-Our system uses a well-thought-out power distribution setup to ensure stable operation of all components during both autonomous and testing phases:
-
-The Raspberry Pi 4B (8GB) is powered via a power bank connected through the USB-C port. This provides a stable 5V supply with sufficient current for the Pi and the camera module.
-
-The Arduino Uno, VL53L0X laser distance sensors, MG996R servo motor, and L298N motor driver are powered by a 3S 5000mAh 100C LiPo battery. This delivers a nominal voltage of 11.1V, suitable for running motors and power-hungry components.
-
-To safely and efficiently regulate voltage, we use a DC-DC buck converter (YH11060D, 200W, 12A) to step down the 11.1V from the LiPo battery to 5V or 9V, depending on the requirements of each component (e.g., Arduino or servo motors).
-
-The L298N motor driver receives direct power from the LiPo battery through its VIN and GND pins, while its logic level (5V) can be supplied from the onboard regulator or from the DC-DC converter output.
-
-This power configuration allows for efficient load distribution and ensures reliable performance of all hardware in real-world field conditions.
-
-<img src="blob:https://web.whatsapp.com/bb2e8a98-d533-4a8a-b707-593eac917fbc">
-
-We made big progress since first version of our vehicle, because first one was using differential system of moving, that is prohibited.
-Also we use raspberry pi 4B instead of esp32 cam, that gives more power for object detection.
-
-## 🧠 Object Recognition Using Raspberry Pi
-
-To recognize red and green columns, we implemented a computer vision system using the **Raspberry Pi 4B** and the **Raspberry Pi Camera Module v2**. The Raspberry Pi captures real-time video frames and processes them using Python and OpenCV.
-
-The recognition logic is based on color detection in the **HSV** (Hue, Saturation, Value) color space. This approach allows for more reliable detection under varying lighting conditions.
-
-### Detection Process:
-1. Capture a frame from the camera.
-2. Convert the image to HSV color space.
-3. Apply color filters to detect **green** and **red** objects.
-4. Use contours to identify the shape and size of the columns.
-5. Send a specific code (`1` for green, `2` for red, `0` if none) to the Arduino Uno via serial communication.
-
-### Python Code Example:
-```python
-import cv2
-import serial
-import time
-
-# Setup serial connection to Arduino
-arduino = serial.Serial('/dev/ttyUSB0', 9600)
-time.sleep(2)
-
-cap = cv2.VideoCapture(0)
-
-while True:
-    ret, frame = cap.read()
-    if not ret:
-        continue
-
-    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-
-    # Define color ranges
-    green_lower = (40, 70, 70)
-    green_upper = (80, 255, 255)
-    red_lower1 = (0, 70, 50)
-    red_upper1 = (10, 255, 255)
-    red_lower2 = (170, 70, 50)
-    red_upper2 = (180, 255, 255)
-
-    # Create masks
-    green_mask = cv2.inRange(hsv, green_lower, green_upper)
-    red_mask1 = cv2.inRange(hsv, red_lower1, red_upper1)
-    red_mask2 = cv2.inRange(hsv, red_lower2, red_upper2)
-    red_mask = red_mask1 | red_mask2
-
-    # Detect objects and send signal to Arduino
-    if cv2.countNonZero(green_mask) > 500:
-        arduino.write(b'1\n')
-    elif cv2.countNonZero(red_mask) > 500:
-        arduino.write(b'2\n')
-    else:
-        arduino.write(b'0\n')
+#### Communication Flow
+```
+Raspberry Pi (Vision Processing)
+         ↓ 
+    [USB Cable]
+         ↓ 
+   EV3 (Control)
+         ↓
+[Motors & Sensors]
 ```
 
+### Sensors
 
-<img src="https://github.com/temiik/2025ChangeMakers/blob/main/schemes/%D0%91%D0%B5%D0%B7%20%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F.png?raw=true">
-📌 Key Components:
-- Raspberry Pi 4 — main controller.
+- **Ultrasonic Sensors (EV3):** Mounted on both sides for precise centering between walls.
+- **Color Sensor (EV3):** For counting turns
+- **Button (EV3):** Starting the program
+- **Camera (Raspberry Pi):** Wide-angle CSI camera for robust color and object detection.
 
-- L298N Motor Driver — module for controlling motors and actuators.
+### Computing Units
 
-- Ultrasonic Sensor (HC-SR04) — for obstacle distance detection.
+- **Raspberry Pi 4:** Runs Python 3, OpenCV, and all vision algorithms.
+- **LEGO EV3 Brick:** Runs ev3dev (Debian-based OS), controls motors and sensors, receives commands from Pi with python
 
-- VL53L0X — ToF distance sensor (I2C connection).
+---
 
-- MicroSD Module — for firmware and data storage.
+## Software Overview
 
-- USB and RJ45 Ports — for external peripherals.
+### EV3dev & Raspberry Pi Setup
 
-- CSI Camera Module — for video stream.
+- **EV3dev** installed on the EV3 brick for full Linux compatibility and Python support. It gives opportunity to control all motors and sensors with **python 3.5**
+- **Raspberry Pi** runs Raspbian OS with OpenCV and all necessary Python libraries for columns and wall detection
+- **SSH keys** set up for passwordless communication between Pi and EV3.
 
-- 3.5mm Audio Jack — for audio output.
+### Communication (SSH)
 
-- 1 Servo Motor — connected to Raspberry Pi GPIO for angle control.
+- **Socket-based protocol:** The Pi opens a TCP socket to the EV3, sending simple string commands (e.g., `red,640,300`, `backup`, `prepare_green`).
 
-- 1 DC Motor (12V) — connected to L298N for driving.
+**Example: Socket connection on Raspberry Pi**
+```python
+import socket
+client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+EV3_IP = '10.42.0.3'  # EV3 IP address
+PORT = 12345
+client.connect((EV3_IP, PORT))
+```
 
-📊 Connections:
-- 📦 L298N Motor Driver:
-- OUT1 / OUT2 — connected to 12V DC Motor.
+**Example: Socket server on EV3**
+```python
+import socket
+HOST = '0.0.0.0'
+PORT = 12345
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_socket.bind((HOST, PORT))
+server_socket.listen(1)
+print("Waiting for connection from Raspberry Pi...")
+client_socket, _ = server_socket.accept()
+print("Connected.")
+```
 
-- OUT3 / OUT4 — optional for second motor.
+- **EV3 listens** for commands, parses them, and executes corresponding motor/sensor actions.
 
-- IN1 / IN2 — control lines from Raspberry Pi to control the DC motor direction.
+### Vision & Detection (OpenCV)
 
-- ENA (Enable A) — connected to PWM-capable GPIO pin on Raspberry Pi for speed control.
+- **LAB color space** is used for robust color detection, minimizing the effect of lighting changes.
+- **Gaussian blur, erosion, and dilation** are applied to clean up the image and improve contour detection.
+- **Contours** are extracted for pillars, lines, and walls.
+- **ROI (Region of Interest):** Only relevant parts of the image are processed for each task, improving speed and reliability.
 
-- VS — motor power supply (12V).
+**Example: ROI extraction and mask creation (Raspberry Pi)**
+```python
+import cv2
+import numpy as np
+# Assume frame is a BGR image from the camera
+lab = cv2.cvtColor(frame, cv2.COLOR_BGR2LAB)
+ROI = (0, 160, 1280, 560)  # x1, y1, x2, y2
+lab_roi = lab[ROI[1]:ROI[3], ROI[0]:ROI[2]]
+lower = np.array([50, 20, 20], dtype=np.uint8)
+upper = np.array([255, 110, 140], dtype=np.uint8)
+mask = cv2.inRange(lab_roi, lower, upper)
+```
 
-- GND / VSS — common ground and logic voltage (3.3V / 5V).
+**Example: Sending a command from Pi to EV3**
+```python
+msg = "red,640,300"  # Example: detected red pillar at (640, 300)
+client.sendall((msg + "\n").encode())
+```
 
-- Servo Motor — powered from 5V and controlled directly by a Raspberry Pi GPIO pin using PWM.
+**Example: Receiving and handling a command on EV3**
+```python
+for line in sock_file:
+    msg = line.strip()
+    if msg == "backup":
+        # Back up if wall is too close
+        drive_motor.run_forever(speed_sp=400)
+        sleep(1.0)
+        stop()
+    elif ',' in msg:
+        color, x, y = msg.split(',')
+        # Handle pillar avoidance logic
+```
 
-📦 Ultrasonic Sensor:
-- VCC — 5V.
+### 🔧 Physical Setup and Calibration
 
-- TRIG — GPIO control pin.
+#### Camera Mounting
+- Camera mounted at optimal height (15cm) for pillar detection
+- Tilted slightly downward (15°) to better see nearby obstacles
+- Wide-angle lens provides ~160° field of view
 
-- ECHO — GPIO read pin.
+#### Sensor Positioning
+- Ultrasonic sensors mounted parallel to ground
+- Positioned at equal distances from center
+- Height optimized to avoid floor reflections
 
-- GND — ground.
+#### Motor Configuration
+- Drive motor geared for balance of speed and torque
+- Steering motor calibrated for maximum 50° turn angle
+- PID parameters tuned for smooth control
 
-📦 ToF Distance Sensor (VL53L0X):
-- SDA / SCL — connected to Raspberry Pi I2C pins.
+### Control Logic
 
-- VCC — 3.3V or 5V.
+- **Pillar avoidance:** The Pi detects red/green pillars and sends their coordinates to the EV3, which executes a PD-controlled avoidance maneuver.
+- **Wall centering:** The EV3 uses ultrasonic sensors to keep the robot centered between walls.
+- **Wall avoidance (camera):** The Pi detects black regions (walls) in the camera image and commands the EV3 to back up if too close.
+- **Line detection:** (If used) The Pi detects colored lines for turn/parking logic.
 
-- GND — ground.
+---
 
-📦 CSI Camera:
-- Connected via FPC connector to Raspberry Pi’s CSI port.
+## Algorithmic Details
 
-📦 USB, RJ45, Micro HDMI:
-- External device connectivity, power, and video output.
+### ROI (Region of Interest) Explanation
 
-📦 Servo Motor:
-- Control pin — connected to a Raspberry Pi GPIO with PWM.
+- **Why ROI?** Processing only the relevant part of the image (e.g., lower half for wall detection, center for pillars) reduces noise and increases speed.
+- **How?** Each detection task (pillar, wall, line) uses its own ROI, defined as a rectangle in image coordinates.
 
-- Power — from 5V.
+### Ultrasonic Centering
 
-- GND — common ground.
+- **How it works:** The EV3 reads both left and right ultrasonic sensors. If the difference is within a small tolerance, the robot is centered. Otherwise, the steering is adjusted to correct the position.
 
+**Example: Ultrasonic centering on EV3**
+```python
+def adjust_to_center():
+    left = ultrasonic_left.distance_centimeters
+    right = ultrasonic_right.distance_centimeters
+    tolerance = 3
+    if abs(left - right) <= tolerance:
+        center_steering()
+    elif left < right:
+        steering_motor.run_to_abs_pos(position_sp=-50, speed_sp=1000)
+    else:
+        steering_motor.run_to_abs_pos(position_sp=40, speed_sp=1000)
+    print("Left distance:", left)
+    print("Right distance:", right)
+```
 
+### Wall Avoidance with Camera
 
+- **How it works:** The Pi analyzes the lower part of the image for large black regions (walls). If detected, it sends a `backup` command to the EV3.
 
+**Example: Wall detection and backup command (Raspberry Pi)**
+```python
+BLACK_LOWER = np.array([0, 0, 0], dtype=np.uint8)
+BLACK_UPPER = np.array([50, 128, 128], dtype=np.uint8)
+lower_roi = lab[600:720, 0:1280]
+lower_mask = cv2.inRange(lower_roi, BLACK_LOWER, BLACK_UPPER)
+lower_area = np.sum(lower_mask > 0)
+if lower_area > 20000:
+    client.sendall(b"backup\n")
+```
 
+---
 
+## Why We Switched: Arduino, EV3, and Pi
 
+- **Previous Solution:** We initially used Arduino for motor and sensor control, but found it limiting for real-time vision and complex logic.
+- **Why EV3?** The EV3 offers robust, reliable motor and sensor control, and is easy to program with Python via ev3dev.
+- **Why Raspberry Pi?** The Pi is powerful enough for real-time image processing with OpenCV, and can easily communicate with the EV3.
+- **Why not just one?** Combining both allows us to leverage the strengths of each platform: Pi for vision, EV3 for control.
+- **Communication:** SSH and sockets provide a simple, reliable way to link the two systems, with minimal latency and easy debugging.
 
-## Content
+---
 
-* `t-photos` contains 2 photos of the team (an official one and one funny photo with all team members)
-* `v-photos` contains 6 photos of the vehicle (from every side, from top and bottom)
-* `video` contains the video.md file with the link to a video where driving demonstration exists
-* `schemes` contains one or several schematic diagrams in form of JPEG, PNG or PDF of the electromechanical components illustrating all the elements (electronic components and motors) used in the vehicle and how they connect to each other.
-* `src` contains code of control software for all components which were programmed to participate in the competition
-* `models` is for the files for models used by 3D printers, laser cutting machines and CNC machines to produce the vehicle elements. If there is nothing to add to this location, the directory can be removed.
-* `other` is for other files which can be used to understand how to prepare the vehicle for the competition. It may include documentation how to connect to a SBC/SBM and upload files there, datasets, hardware specifications, communication protocols descriptions etc. If there is nothing to add to this location, the directory can be removed.
+## Potential Improvements
+
+- **Integrate IMU/Gyro** for more precise turns and drift correction.
+- **Optimize vision pipeline** for even faster frame rates.
+- **Add stuck detection** using image similarity or motor feedback.
+- **Experiment with different camera positions** for improved detection of low or high obstacles.
+- **Add TPU** such as coral USB from google to increase amount of FPS
+---
+
+## Team & Contact
+
+- [Your Name(s)], [Contact Info]
+- [Add team photo or logo if desired]
+
+---
+
+**Acknowledgements:**  
+Thanks to the WRO community and open-source contributors for inspiration and code samples.
