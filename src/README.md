@@ -131,16 +131,3 @@ Switching between them is as simple as running either `object_detect_lab.py` or 
    - Recenters via ultrasonic sensors.
 5. Continues lap counting using color sensor.
 6. Stops after completing 12 laps.
-
----
-
-## 📁 Threshold Configuration
-
-Thresholds for color detection are stored in:
-
-- `models/lab_thresholds.json`
-- `models/hsv_thresholds.json`
-
-You can adjust them using `thresholds_picker.py` for your lighting conditions and save new configs.
-
----
