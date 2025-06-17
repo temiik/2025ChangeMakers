@@ -1,8 +1,21 @@
+This repository documents our journey in building an autonomous vehicle for the WRO Future Engineers 2024-25 challenge, using a hybrid approach with LEGO EV3 and Raspberry Pi for robust, real-time vision and control.
+
 # 🛠️ Team Changemakers — WRO Future Engineers 2024-25 Documentation
 
-> This repository documents our journey in building an autonomous vehicle for the WRO Future Engineers 2024-25 challenge, using a hybrid approach with LEGO EV3 and Raspberry Pi for robust, real-time vision and control.
+[![Youtube](https://img.shields.io/badge/Youtube-%23FF0000.svg?style=for-the-badge&logo=Youtube&logoColor=white)](https://www.youtube.com/@NerdvanaRomania)
+[![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white)](https://instagram.com/nerdvana_romania/)
+[![Facebook](https://img.shields.io/badge/Facebook-%231877F2.svg?style=for-the-badge&logo=Facebook&logoColor=white)](https://www.facebook.com/nerdvanaro/)
 
+**Team Members:**  
+- Yesken Kairat, 16 — kairatyesken@gmail.com  
+- Tolendi Temirlan, 16  
+- Yusuf Mukhambetkaliev, 16  
 
+**Location:** Kazakhstan, [your city]  
+**Contact:** kairatyesken@gmail.com
+
+**Mission:**  
+> We are Team Changemakers — passionate about robotics, innovation, and real-world engineering. Our goal is to build robust, intelligent autonomous vehicles that can adapt to any challenge.
 
 ---
 
@@ -165,7 +178,7 @@ print("Connected.")
 
 **Example: ROI extraction and mask creation (Raspberry Pi)**
 ```python
-import cv2
+    import cv2
 import numpy as np
 # Assume frame is a BGR image from the camera
 lab = cv2.cvtColor(frame, cv2.COLOR_BGR2LAB)
@@ -258,8 +271,8 @@ def adjust_to_center():
 BLACK_LOWER = np.array([0, 0, 0], dtype=np.uint8)
 BLACK_UPPER = np.array([50, 128, 128], dtype=np.uint8)
 lower_roi = lab[600:720, 0:1280]
-lower_mask = cv2.inRange(lower_roi, BLACK_LOWER, BLACK_UPPER)
-lower_area = np.sum(lower_mask > 0)
+    lower_mask = cv2.inRange(lower_roi, BLACK_LOWER, BLACK_UPPER)
+    lower_area = np.sum(lower_mask > 0)
 if lower_area > 20000:
     client.sendall(b"backup\n")
 ```
