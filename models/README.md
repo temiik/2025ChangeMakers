@@ -1,6 +1,6 @@
 # 3D Models
 
-This project does not use any custom 3D-printed parts, but here you can see some models of the past versions of our robot.
+This project does not use any custom 3D-printed parts, but here you can see some 3D models of the past version of our robot.
 All hardware components were assembled using standard LEGO Mindstorms EV3 parts, motors, and sensors. Therefore, no 3D modeling or printing was required during development.
 
 ## Components Used
