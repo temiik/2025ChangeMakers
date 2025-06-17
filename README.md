@@ -11,7 +11,7 @@ This repository documents our journey in building an autonomous vehicle for the 
 - Tolendi Temirlan, 16  
 - Yusuf Mukhambetkaliev, 16  
 
-**Location:** Kazakhstan, [your city]  
+**Location:** Kazakhstan, Kokshetau
 **Contact:** kairatyesken@gmail.com
 
 **Mission:**  
