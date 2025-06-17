@@ -1,7 +1,7 @@
 This repository documents our journey in building an autonomous vehicle for the WRO Future Engineers 2024-25 challenge, using a hybrid approach with LEGO EV3 and Raspberry Pi for robust, real-time vision and control.
 
 # 🛠️ Team Changemakers — WRO Future Engineers 2024-25 Documentation
-
+img src="(https://github.com/temiik/2025ChangeMakers/blob/main/t-photos/teamlogo.jpeg)"
 [![Youtube](https://img.shields.io/badge/Youtube-%23FF0000.svg?style=for-the-badge&logo=Youtube&logoColor=white)](https://www.youtube.com/@2025ChangeMakers)
 [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white)](https://instagram.com/tmkedd/)
 
