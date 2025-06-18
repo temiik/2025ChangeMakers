@@ -404,11 +404,12 @@ if lower_area > 20000:
 - **Add TPU** such as coral USB from google to increase amount of FPS
 ---
 ## Team & Contact
-Thanks to the WRO community and open-source contributors for inspiration and code samples.
 <img src="https://github.com/temiik/2025ChangeMakers/blob/main/t-photos/professional.jpeg">
-https://github.com/temiik/2025ChangeMakers/blob/main/t-photos/professional.jpeg
-Yesken Kairat 16 kairatyesken@gmail.com
-Tolendi Temirlan 16 temiktrmuk@gmail.com
-Muhamedkaliev Yusuf 16 muhamedkalievyusuf@gmail.com
+
+- Yesken Kairat 16 kairatyesken@gmail.com
+- Tolendi Temirlan 16 temiktrmuk@gmail.com
+- Muhamedkaliev Yusuf 16 muhamedkalievyusuf@gmail.com
+
+- 
 **Acknowledgements:**  
 Thanks to the WRO community and open-source contributors for inspiration and code samples.
