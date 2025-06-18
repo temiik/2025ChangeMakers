@@ -9,6 +9,7 @@ This repository documents our journey in building an autonomous vehicle for the 
 **Team Members:**  
 - Yesken Kairat, 16 — kairatyesken@gmail.com  
 - Tolendi Temirlan, 16 — temiktrmuk@gmail.com
+- Muhamedkaliev Yusuf, 16 — muhamedkalievyusuf@gmail.com
 
 **Location:** Kazakhstan, Kokshetau
 **Contact:** kairatyesken@gmail.com
@@ -402,7 +403,12 @@ if lower_area > 20000:
 - **Experiment with different camera positions** for improved detection of low or high obstacles.
 - **Add TPU** such as coral USB from google to increase amount of FPS
 ---
-
-**Acknowledgements:**  
+## Team & Contact
 Thanks to the WRO community and open-source contributors for inspiration and code samples.
+<img src="https://github.com/temiik/2025ChangeMakers/blob/main/t-photos/professional.jpeg">
+https://github.com/temiik/2025ChangeMakers/blob/main/t-photos/professional.jpeg
+Yesken Kairat 16 kairatyesken@gmail.com
+Tolendi Temirlan 16 temiktrmuk@gmail.com
+Muhamedkaliev Yusuf 16 muhamedkalievyusuf@gmail.com
+**Acknowledgements:**  
 Thanks to the WRO community and open-source contributors for inspiration and code samples.
