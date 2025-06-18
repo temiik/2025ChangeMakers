@@ -410,6 +410,5 @@ if lower_area > 20000:
 - Tolendi Temirlan 16 temiktrmuk@gmail.com
 - Muhamedkaliev Yusuf 16 muhamedkalievyusuf@gmail.com
 
-- 
 **Acknowledgements:**  
 Thanks to the WRO community and open-source contributors for inspiration and code samples.
