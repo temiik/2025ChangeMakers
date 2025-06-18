@@ -6,8 +6,6 @@ This repository documents our journey in building an autonomous vehicle for the 
 [![Youtube](https://img.shields.io/badge/Youtube-%23FF0000.svg?style=for-the-badge&logo=Youtube&logoColor=white)](https://www.youtube.com/@2025ChangeMakers)
 [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white)](https://instagram.com/tmkedd/)
 
-<img src="https://github.com/temiik/2025ChangeMakers/blob/main/t-photos/professional.jpeg">
-
 **Team Members:**  
 - Yesken Kairat, 16 — kairatyesken@gmail.com  
 - Tolendi Temirlan, 16 — temiktrmuk@gmail.com
@@ -15,6 +13,10 @@ This repository documents our journey in building an autonomous vehicle for the 
 
 **Location:** Kazakhstan, Kokshetau
 **Contact:** kairatyesken@gmail.com
+
+
+<img src="https://github.com/temiik/2025ChangeMakers/blob/main/t-photos/professional.jpeg">
+
 
 **Mission:**  
 > We are Team Changemakers — passionate about robotics, innovation, and real-world engineering. Our goal is to build robust, intelligent autonomous vehicles that can adapt to any challenge.
