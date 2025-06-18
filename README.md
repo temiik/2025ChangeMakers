@@ -54,9 +54,9 @@ Our robot is designed to autonomously navigate a WRO FE field, detect colored pi
 - **Front-wheel Ackerman steering** for realistic car-like movement.
 <img src="https://i.sstatic.net/r0qZt.png" style="">
 - <b> Rear-wheel drive </b> for propulsion.
-- **Raspberry Pi** handles all camera-based object and wall detection using OpenCV.
-- **EV3 Brick** (running ev3dev) manages motors, ultrasonic sensors, and executes movement commands.
-- **SSH socket communication** links the Pi and EV3, ensuring low-latency, reliable command transfer.
+- <b> Raspberry Pi </b> handles all camera-based object and wall detection using OpenCV.
+- <b> EV3 Brick</b> (running ev3dev) manages motors, ultrasonic sensors, and executes movement commands.
+- <b> SSH socket communication </b> links the Pi and EV3, ensuring low-latency, reliable command transfer.
 
 ---
 
