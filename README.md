@@ -239,7 +239,9 @@ Raspberry Pi (Vision Processing)
 ### Computing Units
 
 - **Raspberry Pi 4:** Runs Python 3, OpenCV, and all vision algorithms.
+  <img src="https://assets.raspberrypi.com/static/raspberry-pi-4-labelled-f5e5dcdf6a34223235f83261fa42d1e8.png" width="150">
 - **LEGO EV3 Brick:** Runs ev3dev (Debian-based OS), controls motors and sensors, receives commands from Pi with python
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbKJSQXPzuSEu9_zsn7_Ve6I35e11oOjjIYg&s" width="150">
 
 ---
 
