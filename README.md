@@ -49,7 +49,8 @@ Our robot is designed to autonomously navigate a WRO FE field, detect colored pi
 ## System Architecture
 
 - **Front-wheel Ackerman steering** for realistic car-like movement.
-- **Rear-wheel drive** for propulsion.
+<img src="https://i.sstatic.net/r0qZt.png" style="">
+- <b> Rear-wheel drive </b> for propulsion.
 - **Raspberry Pi** handles all camera-based object and wall detection using OpenCV.
 - **EV3 Brick** (running ev3dev) manages motors, ultrasonic sensors, and executes movement commands.
 - **SSH socket communication** links the Pi and EV3, ensuring low-latency, reliable command transfer.
@@ -64,6 +65,53 @@ Our robot is designed to autonomously navigate a WRO FE field, detect colored pi
 - **Steering:** Front-wheel Ackerman steering, providing realistic turning dynamics and improved maneuverability compared to differential drive.
 - **Drive:** Rear-wheel drive, controlled via EV3 motors.
 
+#### Detailed Explanation: Front-Wheel Ackermann Steering
+
+**What is Ackermann Steering?**
+
+Ackermann steering is a geometric arrangement of linkages in the steering of a car or robot designed so that all wheels trace out circles with a common center point during a turn. This means the inner and outer front wheels turn at different angles, allowing for smooth, realistic, and slip-free cornering—just like a real car.
+
+**Why Use Ackermann Steering?**
+- It mimics real automotive steering, making the robot's movement more natural and predictable.
+- Reduces tire wear and slippage compared to differential (tank) steering, especially on high-friction surfaces.
+- Essential for precise navigation in tight spaces, as required in the WRO FE challenge.
+
+**How We Implemented It:**
+- The front wheels are connected by a custom LEGO steering linkage, driven by a single EV3 large motor (steering motor).
+- The steering linkage is designed so that when the motor turns, the left and right wheels pivot at different angles, following the Ackermann geometry.
+- The rear wheels are fixed and provide propulsion only.
+- The steering motor is calibrated to allow a maximum steering angle of about 50°, providing a tight turning radius.
+- The geometry was tuned by adjusting the lengths and pivot points of the LEGO beams to approximate the ideal Ackermann angles.
+
+**Control:**
+- The EV3 brick receives steering commands (e.g., from the Raspberry Pi or its own centering logic) and sets the steering motor to the required angle using position control.
+- The robot can smoothly transition between straight, left, and right turns, and can hold any steering angle for curved paths.
+
+**Advantages for WRO FE:**
+- Allows the robot to navigate sharp corners and narrow passages without skidding.
+- More efficient and realistic movement, which is important for tasks like parking and pillar avoidance.
+- Makes the robot's behavior more predictable for both manual tuning and autonomous algorithms.
+
+**Ackermann Steering Diagram:**
+
+```mermaid
+flowchart TD
+    A["Steering Servo Motor"] --> B["Steering Linkages"]
+    B --> C["Front Left Wheel"]
+    B --> D["Front Right Wheel"]
+    C -- "Turns at larger angle" --> E["Inner Wheel Path"]
+    D -- "Turns at smaller angle" --> F["Outer Wheel Path"]
+    G["Rear Wheels (Fixed)"]
+    style G fill:#000,stroke:#eee,stroke-width:2px,color:#fff
+    C --> G
+    D --> G
+    subgraph Ackermann Geometry
+        C
+        D
+        G
+    end
+```
+
 ### ⚡ Power Management
 
 - **EV3 Power:** Powered by standard LEGO EV3 battery (2200mAh Li-ion)
@@ -76,6 +124,7 @@ Our robot is designed to autonomously navigate a WRO FE field, detect colored pi
   - Ensures clean signal processing
 
 ### 🔌 Connection Scheme
+
 
 #### EV3 Configuration
 
@@ -97,6 +146,24 @@ Our robot is designed to autonomously navigate a WRO FE field, detect colored pi
 | USB-C | Power Bank | Power input (5V) |
 | GPIO | Fan | Cooling (optional) |
 
+
+```mermaid
+flowchart TD
+    %% Raspberry Pi Section
+    Raspberry_Pi["Raspberry Pi"] --> |"Power"| Power["Power Bank\nUSB-C"]
+    Raspberry_Pi --> |"Camera Input"| Cam["Camera Module\nUSB-A"]
+    Raspberry_Pi --> |"SSH Control"| EV3_Brick["EV3 Brick"]
+    
+    %% EV3 Brick Section
+    EV3_Brick --> |"Motor Control"| Drive["Drive Motor\nPort A"]
+    EV3_Brick --> |"Steering Control"| Steer["Steering Motor\nPort B"]
+    EV3_Brick --> |"Distance Input"| USL["Ultrasonic Sensor (Left)\nPort 1"]
+    EV3_Brick --> |"Distance Input"| USR["Ultrasonic Sensor (Right)\nPort 2"]
+    EV3_Brick --> |"Color Input"| Color["Color Sensor\nPort 3"]
+    EV3_Brick --> |"Button Input"| Touch["Touch Sensor\nPort 4"]
+```
+
+
 #### Power Distribution
 
 | Component | Power Source | Voltage | Current Draw |
@@ -106,6 +173,42 @@ Our robot is designed to autonomously navigate a WRO FE field, detect colored pi
 | Sensors | EV3 Battery | 5V | ~50mA each |
 | Raspberry Pi | Power Bank | 5V | ~2.5A max |
 | Camera | Raspberry Pi | 3.3V | ~250mA |
+
+**Power Distribution Diagram:**
+
+```mermaid
+flowchart TD
+    subgraph Power_Sources["Power Sources"]
+        EV3Bat["EV3 Battery\n7.2V, 2200mAh"]
+        PowerBank["Power Bank\n5V, 10000mAh"]
+    end
+
+    subgraph EV3_Components["EV3 Components"]
+        EV3["EV3 Brick"]
+        Motors["Motors\n7.2V, ~500mA each"]
+        Sensors["Sensors\n5V, ~50mA each"]
+    end
+
+    subgraph Pi_Components["Raspberry Pi Components"]
+        RPi["Raspberry Pi\n5V, 2.5A max"]
+        Cam["Camera\n3.3V, ~250mA"]
+    end
+
+    EV3Bat --> |"7.2V"| EV3
+    EV3 --> |"7.2V"| Motors
+    EV3 --> |"5V"| Sensors
+    
+    PowerBank --> |"5V"| RPi
+    RPi --> |"3.3V"| Cam
+
+    style EV3Bat fill:#000,stroke:#333
+    style PowerBank fill:#000,stroke:#333
+    style EV3 fill:#000,stroke:#333
+    style RPi fill:#000,stroke:#333
+    style Motors fill:#000,stroke:#333
+    style Sensors fill:#000,stroke:#333
+    style Cam fill:#000,stroke:#333
+```
 
 #### Communication Flow
 ```
@@ -120,10 +223,13 @@ Raspberry Pi (Vision Processing)
 
 ### Sensors
 
-- **Ultrasonic Sensors (EV3):** Mounted on both sides for precise centering between walls.
-- **Color Sensor (EV3):** For counting turns
-- **Button (EV3):** Starting the program
-- **Camera (Raspberry Pi):** Wide-angle CSI camera for robust color and object detection.
+- <b> Ultrasonic Sensors (EV3): </b> Mounted on both sides for precise centering between walls.
+<img src="https://m.media-amazon.com/images/I/51wnwlOTfCL._AC_SL1000_.jpg" width="150">
+- <b> Color Sensor (EV3): </b> For counting turns
+<img src="https://m.media-amazon.com/images/I/61ljvcb1SrL.jpg" width="150">
+- <b> Touch sensor </b> (EV3): </b> Starting the program
+<img src="https://www.lego.com/cdn/cs/set/assets/blt57e7b4a821dfc054/45507.jpg" width="150">
+- <b> Camera: </b> Wide-angle camera for robust color and object detection.
 
 ### Computing Units
 
@@ -177,7 +283,7 @@ print("Connected.")
 
 **Example: ROI extraction and mask creation (Raspberry Pi)**
 ```python
-    import cv2
+import cv2
 import numpy as np
 # Assume frame is a BGR image from the camera
 lab = cv2.cvtColor(frame, cv2.COLOR_BGR2LAB)
@@ -298,12 +404,5 @@ if lower_area > 20000:
 ---
 
 **Acknowledgements:**  
-## Team & Contact
 Thanks to the WRO community and open-source contributors for inspiration and code samples.
-
-Yesken Kairat 16 kairatyesken@gmail.com
-Tolendi Temirlan 16 temiktrmuk@gmail.com
-
-
-**Acknowledgements:**  
 Thanks to the WRO community and open-source contributors for inspiration and code samples.
