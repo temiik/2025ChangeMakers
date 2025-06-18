@@ -242,9 +242,9 @@ Raspberry Pi (Vision Processing)
   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQU_YhwIruavrJ3Sg1R7p0EFVM0K4wmN4w9_A&s" width="150">
 - **LEGO EV3 Brick:** Runs ev3dev (Debian-based OS), controls motors and sensors, receives commands from Pi with python
   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbKJSQXPzuSEu9_zsn7_Ve6I35e11oOjjIYg&s" width="150">
-
 ---
-
+-- <img src="https://github.com/temiik/2025ChangeMakers/blob/main/others/components.jpeg">
+-- <img src="https://github.com/temiik/2025ChangeMakers/blob/main/others/components%20(2).png">
 ## Software Overview
 
 ### EV3dev & Raspberry Pi Setup
