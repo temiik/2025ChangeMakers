@@ -392,8 +392,9 @@ if lower_area > 20000:
 ---
 
 ## Why We Switched: Arduino, EV3, and Pi
----   <img src="https://github.com/temiik/2025ChangeMakers/blob/main/others/changes.jpg">
+
 - **Previous Solution:** We initially used Arduino for motor and sensor control, but found it limiting for real-time vision and complex logic.
+ <img src="https://github.com/temiik/2025ChangeMakers/blob/main/others/changes.jpg">
 - **Why EV3?** The EV3 offers robust, reliable motor and sensor control, and is easy to program with Python via ev3dev.
 - **Why Raspberry Pi?** The Pi is powerful enough for real-time image processing with OpenCV, and can easily communicate with the EV3.
 - **Why not just one?** Combining both allows us to leverage the strengths of each platform: Pi for vision, EV3 for control.
