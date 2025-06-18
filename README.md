@@ -1,7 +1,7 @@
 This repository documents our journey in building an autonomous vehicle for the WRO Future Engineers 2024-25 challenge, using a hybrid approach with LEGO EV3 and Raspberry Pi for robust, real-time vision and control.
 
 # 🛠️ Team Changemakers — WRO Future Engineers 2024-25 Documentation
-<img src="https://github.com/temiik/2025ChangeMakers/blob/main/t-photos/teamlogo.jpeg?raw=true" style="width:300;">
+<img src="https://github.com/temiik/2025ChangeMakers/blob/main/t-photos/teamlogo.jpeg?raw=true" width="500">
 
 [![Youtube](https://img.shields.io/badge/Youtube-%23FF0000.svg?style=for-the-badge&logo=Youtube&logoColor=white)](https://www.youtube.com/@2025ChangeMakers)
 [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white)](https://instagram.com/tmkedd/)
@@ -17,7 +17,7 @@ This repository documents our journey in building an autonomous vehicle for the 
 **Contact:** kairatyesken@gmail.com
 
 
-<img src="https://github.com/temiik/2025ChangeMakers/blob/main/t-photos/professional.jpeg">
+<img src="https://github.com/temiik/2025ChangeMakers/blob/main/t-photos/professional.jpeg" width="500">
 
 
 **Mission:**  
@@ -54,7 +54,7 @@ Our robot is designed to autonomously navigate a WRO FE field, detect colored pi
 ## System Architecture
 
 - **Front-wheel Ackerman steering** for realistic car-like movement.
-<img src="https://i.sstatic.net/r0qZt.png" style="">
+<img src="https://i.sstatic.net/r0qZt.png" width="300">
 - <b> Rear-wheel drive </b> for propulsion.
 - <b> Raspberry Pi </b> handles all camera-based object and wall detection using OpenCV.
 - <b> EV3 Brick</b> (running ev3dev) manages motors, ultrasonic sensors, and executes movement commands.
