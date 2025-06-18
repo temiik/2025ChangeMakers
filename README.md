@@ -305,7 +305,7 @@ mask = cv2.inRange(lab_roi, lower, upper)
 ```python
 msg = "red,640,300"  # Example: detected red pillar at (640, 300)
 client.sendall((msg + "\n").encode())
-```
+``` <img src="https://github.com/temiik/2025ChangeMakers/blob/main/src/Camera%20recognition.jpeg">
 
 **Example: Receiving and handling a command on EV3**
 ```python
