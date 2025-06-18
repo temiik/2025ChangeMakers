@@ -6,6 +6,8 @@ This repository documents our journey in building an autonomous vehicle for the 
 [![Youtube](https://img.shields.io/badge/Youtube-%23FF0000.svg?style=for-the-badge&logo=Youtube&logoColor=white)](https://www.youtube.com/@2025ChangeMakers)
 [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white)](https://instagram.com/tmkedd/)
 
+<img src="https://github.com/temiik/2025ChangeMakers/blob/main/t-photos/professional.jpeg">
+
 **Team Members:**  
 - Yesken Kairat, 16 — kairatyesken@gmail.com  
 - Tolendi Temirlan, 16 — temiktrmuk@gmail.com
@@ -37,8 +39,6 @@ This repository documents our journey in building an autonomous vehicle for the 
   - [Wall Avoidance with Camera](#wall-avoidance-with-camera)
 - [Why We Switched: Arduino, EV3, and Pi](#why-we-switched-arduino-ev3-and-pi)
 - [Potential Improvements](#potential-improvements)
-- [Team & Contact](#team--contact)
-
 ---
 
 ## Introduction
@@ -403,12 +403,6 @@ if lower_area > 20000:
 - **Experiment with different camera positions** for improved detection of low or high obstacles.
 - **Add TPU** such as coral USB from google to increase amount of FPS
 ---
-## Team & Contact
-<img src="https://github.com/temiik/2025ChangeMakers/blob/main/t-photos/professional.jpeg">
-
-- Yesken Kairat 16 kairatyesken@gmail.com
-- Tolendi Temirlan 16 temiktrmuk@gmail.com
-- Muhamedkaliev Yusuf 16 muhamedkalievyusuf@gmail.com
-
+  
 **Acknowledgements:**  
 Thanks to the WRO community and open-source contributors for inspiration and code samples.
