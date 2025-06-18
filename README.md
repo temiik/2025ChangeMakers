@@ -17,7 +17,7 @@ This repository documents our journey in building an autonomous vehicle for the 
 **Contact:** kairatyesken@gmail.com
 
 
-<center> <img src="https://github.com/temiik/2025ChangeMakers/blob/main/t-photos/professional.jpeg" width="500"> </center>
+<center> <img src="https://github.com/temiik/2025ChangeMakers/blob/main/t-photos/professional.jpeg"> </center>
 
 
 **Mission:**  
